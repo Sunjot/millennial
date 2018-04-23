@@ -1,0 +1,320 @@
+// Place all the styles related to the Teams controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Cabin:600|Montserrat:400,700');
+
+
+// Mixins
+
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin animate($name, $time, $delay, $fill) {
+  animation: $name $time;
+  animation-delay: $delay;
+  animation-fill-mode: $fill;
+}
+
+body {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#App {
+  @include flex(column, flex-start, center);
+  width: 100%;
+
+  > div {
+    @include flex(column, flex-start, center);
+    width: 100%;
+  }
+}
+
+#title {
+  margin: 20px 10px 10px 10px;
+  font-family: 'Cabin';
+  font-size: 35px;
+  text-align: center;
+}
+
+#instructions {
+  font-size: 15px;
+  text-align: center;
+}
+
+#team-boxes {
+  @include flex(row, center, flex-start);
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 20px 0 0 0;
+
+  .team-box {
+    @include flex(column, flex-start, center);
+    @include animate(fadeslide, 1.5s, 0s, forwards);
+    margin: 10px;
+    padding: 5px;
+    opacity: 0;
+    transform: translateY(10px);
+
+    .team-name {
+      margin: 10px 0 0 0;
+      font-size: 13px;
+    }
+
+    img {
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 1s;
+
+      &:hover {
+        transform: rotate(30deg);
+      }
+    }
+  }
+}
+
+#team-sec {
+  @include flex(column, flex-start, center);
+  width: 90%;
+
+  .team-name {
+    font-family: 'Montserrat';
+    font-size: 30px;
+    margin: 45px 0 20px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid black;
+  }
+
+  .slogan {
+    font-style: italic;
+    font-size: 20px;
+    font-family: 'Montserrat';
+  }
+
+  #tourney-tsize, #seed-finish {
+    @include flex(row, center, flex-start);
+    margin: 15px 0 0 0;
+  }
+
+  #back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+
+  #group-title, #player-title, #social-title{
+    font-size: 25px;
+    font-family: 'Cabin';
+  }
+
+  #record, #group-stats, #socials {
+    @include flex(row, center, flex-start);
+    flex-wrap: wrap;
+    margin: 15px 0 0 0;
+  }
+
+  #socials {
+    .name {
+      color: white;
+    }
+  }
+
+  #twitter {
+    background-color: #00aced;
+  }
+  #facebook {
+    background-color: #3b5998;
+  }
+  #youtube {
+    background-color: #cc181e;
+  }
+  #twitch {
+    background-color: #6441a5;
+  }
+
+  #other {
+    @include flex(row, center, flex-start);
+    flex-wrap: wrap;
+    margin-top: 15px;
+
+    .name {
+      border: 1px solid white;
+      border-radius: 3px;
+      margin: 5px;
+      padding: 10px;
+      color: white;
+    }
+
+    #green-slab {
+      background-color: #0d7a25;
+    }
+
+    #red-slab {
+      background-color: #c60f35;
+    }
+  }
+
+  #players {
+    @include flex(row, center, flex-start);
+    flex-wrap: wrap;
+  }
+}
+
+.slab-sec {
+  @include flex(column, center, center);
+  width: 110px;
+  height: 110px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
+
+  .slab-name {
+    font-family: 'Cabin';
+    font-size: 14px;
+    margin: 10px;
+    text-align: center;
+  }
+
+  .slab-num {
+    font-family: 'Montserrat';
+    font-size: 30px;
+  }
+}
+
+.small-slab {
+  @include flex(row, flex-start, center);
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
+
+  p {
+    padding: 10px;
+    text-transform: capitalize;
+  }
+
+  .name {
+    border-right: 1px solid black;
+    width: 100px;
+    text-align: center;
+  }
+}
+
+#win-sec {
+  border-width: 2px;
+  border-color: #0d7a25;
+  color: #0d7a25;
+}
+
+#loss-sec {
+  border-width: 2px;
+  border-color: #c60f35;
+  color: #c60f35;
+}
+
+#player-sec {
+  @include flex(column, flex-start, center);
+  border: 1px solid black;
+  border-radius: 3px;
+  min-width: 350px;
+  margin: 15px;
+
+  img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin: 15px;
+  }
+
+  #username-id {
+    font-family: "Montserrat";
+    font-size: 20px;
+  }
+
+  #gametags-title {
+    font-family: "Cabin";
+    font-size: 20px;
+    margin: 15px 0 0 0;
+  }
+
+  #gametags-cont {
+    @include flex(row, center, flex-start);
+
+    #gametag {
+      @include flex(column, flex-start, center);
+      border: 1px solid black;
+      border-radius: 3px;
+      padding: 15px;
+      margin: 15px;
+
+      p {
+        margin: 3px;
+        font-family: "Montserrat";
+        font-size: 14px;
+
+        span {
+          font-weight: 700;
+        }
+      }
+
+      #network-hl {
+        width: 60%;
+        height: 1px;
+        background-color: black;
+        margin: 15px;
+      }
+
+      #network-cont {
+        @include flex(row, flex-start, flex-start);
+
+        img {
+          width: 75px;
+          height: auto;
+          margin: 5px;
+        }
+
+        div {
+          @include flex(column, flex-start, flex-start);
+        }
+      }
+    }
+  }
+}
+
+.hrline {
+  width: 50%;
+  height: 1px;
+  background-color: black;
+  margin: 20px;
+}
+
+@keyframes fadeslide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
